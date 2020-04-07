@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
-const CategoryProductsScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Category All Products Screen</Text>
+      <Text>Home Screen!</Text>
       <Button
-        title="View Details"
+        title="View all coffee products"
         color="green"
-        onPress={() => navigation.navigate('ProductDetails')}
+        onPress={() => navigation.navigate('CategoryProducts')}
       />
     </View>
   );
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryProductsScreen;
+export default HomeScreen;

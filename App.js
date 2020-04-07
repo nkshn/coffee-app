@@ -1,18 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-// Screens
-import ProductsStackNavigation from '../coffee-app/navigation/stack/ProductsStackNavigation';
+// Navigation
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigation from './navigation/TabNavigation';
 
 export default function App() {
-  return <ProductsStackNavigation />;
+  return (
+    <NavigationContainer>
+      <TabNavigation />
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});

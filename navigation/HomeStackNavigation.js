@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
 
 // Navigation
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,12 +21,12 @@ const HomeStackNavigation = () => {
       <Stack.Screen
         name="CategoryProducts"
         component={CategoryProductsScreen}
-        options={{ title: 'Coffee' }}
+        options={({ route }) => ({ title: route.params.screenName })}
       />
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScreen}
-        options={{ title: 'Brazil Details' }}
+        options={({ route }) => ({ title: route.params.itemName })}
       />
     </Stack.Navigator>
   );

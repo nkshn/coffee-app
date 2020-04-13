@@ -6,10 +6,12 @@ import {
   StyleSheet,
 } from 'react-native';
 
-// Data
-import { GOODS } from '../data/dummy-data';
+// Redux
+import { useSelector } from 'react-redux';
 
 const ProductDetailsScreen = ({ route }) => {
+  const goodsData = useSelector(state => state.goods.avaliableGoods)
+
   const renderItem = (itemData) => {
     return (
       <View style={styles.itemView}>
@@ -25,7 +27,7 @@ const ProductDetailsScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={GOODS.filter((item) => {
+        data={goodsData.filter((item) => {
           if (item.ID == route.params.itemID) {
             return true;
           }

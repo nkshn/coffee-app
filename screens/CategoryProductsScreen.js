@@ -7,10 +7,12 @@ import {
   StyleSheet,
 } from 'react-native';
 
-// Data
-import { GOODS } from '../data/dummy-data';
+// Redux
+import { useSelector } from 'react-redux';
 
 const CategoryProductsScreen = ({ route, navigation }) => {
+  const goodsData = useSelector(state => state.goods.avaliableGoods);
+
   const renderItem = (itemData) => {
     return (
       <TouchableOpacity
@@ -33,7 +35,7 @@ const CategoryProductsScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={GOODS.filter((item) => {
+        data={goodsData.filter((item) => {
           if (item.categoryID == route.params.categoryID) {
             return true;
           }

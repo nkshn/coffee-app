@@ -2,16 +2,19 @@ import React from 'react';
 import {
   View,
   Text,
+  Image,
   FlatList,
   TouchableOpacity,
   StyleSheet,
+  Platform,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 // Redux
 import { useSelector } from 'react-redux';
 
 const CategoryProductsScreen = ({ route, navigation }) => {
-  const goodsData = useSelector(state => state.goods.avaliableGoods);
+  const goodsData = useSelector((state) => state.goods.avaliableGoods);
 
   const renderItem = (itemData) => {
     return (
@@ -20,20 +23,50 @@ const CategoryProductsScreen = ({ route, navigation }) => {
         onPress={() =>
           navigation.navigate('ProductDetails', {
             itemID: itemData.item.ID,
-            itemName: itemData.item.name
+            itemName: itemData.item.name,
           })
         }
       >
-        <View style={styles.itemView}>
-          <Text style={styles.itemText}>{itemData.item.name}</Text>
-          <Text style={styles.itemText}>{itemData.item.description}</Text>
+        <View style={styles.itemContainer}>
+          <View style={styles.itemImageView}>
+            <Image
+              resizeMode="cover"
+              source={{ uri: itemData.item.image }}
+              style={styles.itemImage}
+            />
+          </View>
+          <View style={styles.itemTextView}>
+            <Text style={styles.itemTextTitle} numberOfLines={1}>
+              {itemData.item.name}
+            </Text>
+            <Text style={styles.itemTextPrice}>${itemData.item.price}</Text>
+          </View>
+          <View style={styles.itemButtonsView}>
+            <View style={[styles.itemQuantityButton, { borderBottomWidth: 1 }]}>
+              <Ionicons
+                name={Platform.OS === 'android' ? 'md-remove' : 'ios-remove'}
+                size={20}
+                color="black"
+              />
+            </View>
+            <View style={styles.itemQuantityTitleView}>
+              <Text style={styles.itemQuantityTitleText}>0</Text>
+            </View>
+            <View style={[styles.itemQuantityButton, { borderTopWidth: 1 }]}>
+              <Ionicons
+                name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
+                size={20}
+                color="black"
+              />
+            </View>
+          </View>
         </View>
       </TouchableOpacity>
     );
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screen}>
       <FlatList
         data={goodsData.filter((item) => {
           if (item.categoryID == route.params.categoryID) {
@@ -49,24 +82,71 @@ const CategoryProductsScreen = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
     margin: 15,
   },
-  itemView: {
+  itemContainer: {
     width: '100%',
-    height: 100,
-    backgroundColor: '#777',
-    marginBottom: 30,
-    borderRadius: 13,
+    height: 110,
+    borderRadius: 15,
+    marginBottom: 20,
+    flexDirection: 'row',
+    overflow: 'hidden',
+    borderWidth: 1,
+  },
+  itemImageView: {
+    width: 90, // 100
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  itemText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold'
-  }
+  itemImage: {
+    width: 75,
+    height: 75,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  itemTextView: {
+    width: 175,
+    flexDirection: 'column',
+    marginVertical: 18,
+    paddingLeft: 3,
+    paddingRight: 9,
+  },
+  itemTextTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    marginTop: 5,
+  },
+  itemTextPrice: {
+    fontSize: 17,
+    fontWeight: '500',
+  },
+  itemButtonsView: {
+    flex: 1,
+    height: '100%',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    borderLeftWidth: 1,
+  },
+  itemQuantityTitleView: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  itemQuantityTitleText: {
+    fontSize: 17,
+    fontWeight: '700',
+  },
+  itemQuantityButton: {
+    flex: 2,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default CategoryProductsScreen;

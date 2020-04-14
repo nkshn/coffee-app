@@ -22,14 +22,14 @@ export const GOODS = [
   new Goods('g8', 'c2', 'Tea with Lemon', 'Description for Tea with lemon', 'https://via.placeholder.com/75x75/008000/FFFFFF/?text=Tea', 100, 100, 0),
 
   // Goods from category Spicy
-  new Goods('g9', 'c3', 'Hot pepper', 'Description for Hot Pepper', 'https://via.placeholder.com/75x75/FF0000/FFFFFF/?text=Spicy', 50, 100, 0),
-  new Goods('g10', 'c3', 'Cinnamon', 'Description for Cinnamon', 'https://via.placeholder.com/75x75/FF0000/FFFFFF/?text=Spicy', 10, 100, 0),
-  new Goods('g11', 'c3', 'Turmeric', 'Description for Turmeric', 'https://via.placeholder.com/75x75/FF0000/FFFFFF/?text=Spicy', 123, 100, 0),
-  new Goods('g12', 'c3', 'Saffron', 'Description for Saffron', 'https://via.placeholder.com/75x75/FF0000/FFFFFF/?text=Spicy', 54.9, 100, 0),
+  new Goods('g9', 'c3', 'Hot pepper', 'Description for Hot pepper', 'https://via.placeholder.com/75x75/0000FF/FFFFFF/?text=Spicy', 50, 100, 0),
+  new Goods('g10', 'c3', 'Cinnamon', 'Description for Cinnamon', 'https://via.placeholder.com/75x75/0000FF/FFFFFF/?text=Spicy', 10, 100, 0),
+  new Goods('g11', 'c3', 'Turmeric', 'Description for Turmeric', 'https://via.placeholder.com/75x75/0000FF/FFFFFF/?text=Spicy', 123, 100, 0),
+  new Goods('g12', 'c3', 'Saffron', 'Description for Saffron', 'https://via.placeholder.com/75x75/0000FF/FFFFFF/?text=Spicy', 54.9, 100, 0),
 
   // Goods from category Accessories
-  new Goods('g13', 'c4', 'Coffee Machine', 'Description for Coffee Machine', 'https://via.placeholder.com/75x75?text=Accessories', 12, 100, 0),
-  new Goods('g14', 'c4', 'Kettle', 'Description for Kettle', 'https://via.placeholder.com/75x75?text=Accessories', 512, 100, 0),
-  new Goods('g15', 'c4', 'Serviette', 'Description for Serviette', 'https://via.placeholder.com/75x75?text=Accessories', 99.99, 100, 0),
-  new Goods('g16', 'c4', 'Coffee Machine x60 PRO', 'Description for Coffee Machine x60 PRO', 'https://via.placeholder.com/75x75?text=Accessories', 9, 100, 0),
+  new Goods('g13', 'c4', 'Coffee Machine', 'Description for Brazil coffee pack', 'https://via.placeholder.com/75x75/008000/FFFFFF/?text=Accessories', 12, 100, 0),
+  new Goods('g14', 'c4', 'Kettle', 'Description for Kettle', 'https://via.placeholder.com/75x75/008000/FFFFFF/?text=Accessories', 512, 100, 0),
+  new Goods('g15', 'c4', 'Serviette', 'Description for Serviette', 'https://via.placeholder.com/75x75/008000/FFFFFF/?text=Accessories', 99.99, 100, 0),
+  new Goods('g16', 'c4', 'Coffee Machine x60 PRO', 'Description for Coffee Machine x60 PRO', 'https://via.placeholder.com/75x75/008000/FFFFFF/?text=Accessories', 9, 100, 0),
 ];

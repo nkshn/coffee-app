@@ -10,7 +10,12 @@ import {
 import { useSelector } from 'react-redux';
 
 const ProductDetailsScreen = ({ route }) => {
-  const goodsData = useSelector(state => state.goods.avaliableGoods)
+  // An array with Product Details data for the current user-selected Product
+  const productDatailsData = useSelector(state => state.goods.avaliableGoods.filter(item => {
+    if (item.ID == route.params.productID) {
+      return true;
+    }
+  }))
 
   const renderItem = (itemData) => {
     return (
@@ -27,11 +32,7 @@ const ProductDetailsScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={goodsData.filter((item) => {
-          if (item.ID == route.params.itemID) {
-            return true;
-          }
-        })}
+        data={productDatailsData}
         renderItem={renderItem}
         keyExtractor={(item) => item.ID}
         showsVerticalScrollIndicator={false}

@@ -26,7 +26,7 @@ const HomeStackNavigation = () => {
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScreen}
-        options={({ route }) => ({ title: route.params.itemName })}
+        options={({ route }) => ({ title: route.params.productName })}
       />
     </Stack.Navigator>
   );

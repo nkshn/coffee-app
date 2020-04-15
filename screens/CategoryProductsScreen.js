@@ -14,7 +14,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 
 const CategoryProductsScreen = ({ route, navigation }) => {
-  const goodsData = useSelector((state) => state.goods.avaliableGoods);
+  // An array of Product data for the current user-selected Category
+  const categoryProductsData = useSelector(state => state.goods.avaliableGoods.filter(item => {
+    if (item.categoryID == route.params.categoryID) {
+      return true;
+    }
+  }))
 
   const renderItem = (itemData) => {
     return (
@@ -22,8 +27,8 @@ const CategoryProductsScreen = ({ route, navigation }) => {
         activeOpacity={0.7}
         onPress={() =>
           navigation.navigate('ProductDetails', {
-            itemID: itemData.item.ID,
-            itemName: itemData.item.name,
+            productID: itemData.item.ID,
+            productName: itemData.item.name,
           })
         }
       >
@@ -68,11 +73,7 @@ const CategoryProductsScreen = ({ route, navigation }) => {
   return (
     <View style={styles.screen}>
       <FlatList
-        data={goodsData.filter((item) => {
-          if (item.categoryID == route.params.categoryID) {
-            return true;
-          }
-        })}
+        data={categoryProductsData}
         renderItem={renderItem}
         keyExtractor={(item) => item.ID}
         showsVerticalScrollIndicator={false}

@@ -3,11 +3,13 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Navigation
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// Stacks Navigation
 import HomeStackNavigation from './HomeStackNavigation';
+import CartStackNavigation from './CartStackNavigation';
 
 // Screens
 import OrdersScreen from '../screens/OrdersScreen';
-import CartScreen from '../screens/CartScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
@@ -21,10 +23,10 @@ const TabNavigation = () => {
 
           if (route.name === 'Home') {
             iconName = 'md-home';
-          } else if (route.name === 'Orders') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
           } else if (route.name === 'Cart') {
             iconName = 'md-cart';
+          } else if (route.name === 'Orders') {
+            iconName = focused ? 'ios-list-box' : 'ios-list';
           } else if (route.name === 'Profile') {
             iconName = 'md-people';
           }
@@ -39,8 +41,8 @@ const TabNavigation = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeStackNavigation} />
+      <Tab.Screen name="Cart" component={CartStackNavigation} />
       <Tab.Screen name="Orders" component={OrdersScreen} />
-      <Tab.Screen name="Cart" component={CartScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );

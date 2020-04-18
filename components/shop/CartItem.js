@@ -23,7 +23,7 @@ const CartItem = (props) => {
         <Text style={styles.itemText}>{props.price.toFixed(2)}</Text>
       </View>
       <View style={styles.itemsDeleteButtonView}>
-        <TouchableOpacity onPress={props.onDelete}>
+        <TouchableOpacity activeOpacity={0.7} onPress={props.onDelete}>
           <Ionicons
             size={26}
             color="red"
@@ -48,25 +48,25 @@ const styles = StyleSheet.create({
   },
   itemQuantityView: {
     flex: 1,
-    alignItems: 'flex-end',
+    alignItems: 'center',
     marginRight: 5,
   },
   itemPriceView: {
     flex: 2,
-    paddingLeft: 20,
+    marginRight: 5,
     alignItems: 'flex-start',
   },
   itemsDeleteButtonView: {
     backgroundColor: 'black',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 45,
+    height: 45,
+    borderRadius: 23,
     alignItems: 'center',
     justifyContent: 'center',
   },
   itemText: {
     color: '#777',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });

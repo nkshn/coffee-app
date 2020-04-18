@@ -1,42 +1,39 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, Button, Image, StyleSheet } from 'react-native';
 
 // Redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as cartActions from '../store/actions/cart';
 
 const ProductDetailsScreen = ({ route }) => {
-  // An array with Product Details data for the current user-selected Product
-  const productDatailsData = useSelector(state => state.goods.avaliableGoods.filter(item => {
-    if (item.ID == route.params.productID) {
-      return true;
-    }
-  }))
+  const productDatailsData = useSelector((state) => state.goods.avaliableGoods);
+  const selectedProduct = productDatailsData.find(
+    (item) => item.ID == route.params.productID
+  );
 
-  const renderItem = (itemData) => {
-    return (
-      <View style={styles.itemView}>
-        <Text>{itemData.item.name}</Text>
-        <Text>{itemData.item.description}</Text>
-        <Text>{itemData.item.price}$</Text>
-        <Text>{itemData.item.counterLeft}</Text>
-        <Text>{itemData.item.counterBuy}</Text>
-      </View>
-    );
-  };
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={productDatailsData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.ID}
-        showsVerticalScrollIndicator={false}
+      <Image
+        source={{ uri: selectedProduct.image }}
+        style={{ width: 75, height: 75 }}
+        resizeMode="cover"
       />
+      <Text>{selectedProduct.name}</Text>
+      <Text>{selectedProduct.description}</Text>
+      <Text>{selectedProduct.price.toFixed(2)}$</Text>
+      <Text>{selectedProduct.counterLeft}</Text>
+      <Text>{selectedProduct.counterBuy}</Text>
+      <View style={{ width: '55%' }}>
+        <Button
+          color="green"
+          title="You liked it? Add to cart"
+          onPress={() => {
+            dispatch(cartActions.addToCart(selectedProduct));
+          }}
+        />
+      </View>
     </View>
   );
 };

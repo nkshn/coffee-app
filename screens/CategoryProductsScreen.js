@@ -15,11 +15,13 @@ import { useSelector } from 'react-redux';
 
 const CategoryProductsScreen = ({ route, navigation }) => {
   // An array of Product data for the current user-selected Category
-  const categoryProductsData = useSelector(state => state.goods.avaliableGoods.filter(item => {
-    if (item.categoryID == route.params.categoryID) {
-      return true;
-    }
-  }))
+  const categoryProductsData = useSelector((state) =>
+    state.goods.avaliableGoods.filter((item) => {
+      if (item.categoryID == route.params.categoryID) {
+        return true;
+      }
+    })
+  );
 
   const renderItem = (itemData) => {
     return (
@@ -44,7 +46,9 @@ const CategoryProductsScreen = ({ route, navigation }) => {
             <Text style={styles.itemTextTitle} numberOfLines={1}>
               {itemData.item.name}
             </Text>
-            <Text style={styles.itemTextPrice}>${itemData.item.price}</Text>
+            <Text style={styles.itemTextPrice}>
+              ${itemData.item.price.toFixed(2)}
+            </Text>
           </View>
           <View style={styles.itemButtonsView}>
             <View style={[styles.itemQuantityButton, { borderBottomWidth: 1 }]}>

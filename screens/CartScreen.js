@@ -33,6 +33,12 @@ const CartScreen = () => {
         onDelete={() => {
           dispatch(cartActions.deleteFromCart(itemData.item.productID));
         }}
+        onReduce={() => {
+          console.log('name: ' + itemData.item.productTitle + ' -1');
+        }}
+        onAdd={() => {
+          console.log('name: ' + itemData.item.productTitle + ' +1');
+        }}
       />
     );
   };

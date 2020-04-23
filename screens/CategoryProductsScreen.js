@@ -2,13 +2,12 @@ import React from 'react';
 import {
   View,
   Text,
-  Image,
   FlatList,
   TouchableOpacity,
   StyleSheet,
   Platform,
+  Button,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
 // Redux
 import { useSelector } from 'react-redux';
@@ -35,13 +34,6 @@ const CategoryProductsScreen = ({ route, navigation }) => {
         }
       >
         <View style={styles.itemContainer}>
-          <View style={styles.itemImageView}>
-            <Image
-              resizeMode="cover"
-              source={{ uri: itemData.item.image }}
-              style={styles.itemImage}
-            />
-          </View>
           <View style={styles.itemTextView}>
             <Text style={styles.itemTextTitle} numberOfLines={1}>
               {itemData.item.name}
@@ -51,21 +43,25 @@ const CategoryProductsScreen = ({ route, navigation }) => {
             </Text>
           </View>
           <View style={styles.itemButtonsView}>
-            <View style={[styles.itemQuantityButton, { borderBottomWidth: 1 }]}>
-              <Ionicons
-                name={Platform.OS === 'android' ? 'md-remove' : 'ios-remove'}
-                size={20}
-                color="black"
+            <View style={{ width: '35%' }}>
+              <Button
+                title="-"
+                color="red"
+                onPress={() => {
+                  console.log('-1');
+                }}
               />
             </View>
-            <View style={styles.itemQuantityTitleView}>
-              <Text style={styles.itemQuantityTitleText}>0</Text>
+            <View style={styles.itemButtonsTextView}>
+              <Text style={styles.itemButtonsText}>0</Text>
             </View>
-            <View style={[styles.itemQuantityButton, { borderTopWidth: 1 }]}>
-              <Ionicons
-                name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
-                size={20}
-                color="black"
+            <View style={{ width: '35%' }}>
+              <Button
+                title="+"
+                color="green"
+                onPress={() => {
+                  console.log('+1');
+                }}
               />
             </View>
           </View>
@@ -93,64 +89,41 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     width: '100%',
-    height: 110,
     borderRadius: 15,
     marginBottom: 20,
     flexDirection: 'row',
     overflow: 'hidden',
-    borderWidth: 1,
-  },
-  itemImageView: {
-    width: 90, // 100
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  itemImage: {
-    width: 75,
-    height: 75,
-    marginHorizontal: 20,
-    borderRadius: 10,
+    borderWidth: 0.7,
   },
   itemTextView: {
-    width: 175,
+    width: '65%',
     flexDirection: 'column',
-    marginVertical: 18,
-    paddingLeft: 3,
-    paddingRight: 9,
+    marginVertical: 15,
+    paddingLeft: 13,
+    justifyContent: 'center',
   },
   itemTextTitle: {
     fontSize: 18,
     fontWeight: '700',
-    marginTop: 5,
   },
   itemTextPrice: {
     fontSize: 17,
     fontWeight: '500',
   },
   itemButtonsView: {
-    flex: 1,
-    height: '100%',
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    borderLeftWidth: 1,
-  },
-  itemQuantityTitleView: {
-    flex: 1,
-    width: '100%',
+    width: '35%',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingRight: 7,
   },
-  itemQuantityTitleText: {
-    fontSize: 17,
-    fontWeight: '700',
+  itemButtonsTextView: {
+    marginHorizontal: 8,
   },
-  itemQuantityButton: {
-    flex: 2,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+  itemButtonsText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
   },
 });
 

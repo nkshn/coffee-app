@@ -3,7 +3,9 @@ import {
   INCREASE_PRODUCT_IN_CART,
   REDUCE_PRODUCT_IN_CART,
   DELETE_PRODUCT_FROM_CART,
+  CLEAR_CART,
 } from '../actions/cart';
+import { ADD_ORDER } from '../actions/orders';
 
 import CartItem from '../../models/cart-items';
 
@@ -98,6 +100,12 @@ export default (state = initialState, actions) => {
         products: updatedProducts,
         totalSum: state.totalSum - selectedDeleteProduct.sum,
       };
+    // Clearing Cart by pressing Button
+    case CLEAR_CART:
+      return initialState;
+    // Clearing Cart after submitting Order
+    case ADD_ORDER:
+      return initialState;
   }
   return state;
 };

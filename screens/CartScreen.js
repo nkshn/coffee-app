@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, Alert, StyleSheet } from 'react-native';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import * as cartActions from '../store/actions/cart';
+import * as orderActions from '../store/actions/orders';
 
 // Components
 import CartItem from '../components/shop/CartItem';
@@ -30,9 +31,15 @@ const CartScreen = () => {
         title={itemData.item.productTitle}
         quantity={itemData.item.quantity}
         price={itemData.item.productPrice}
-        onDelete={() => dispatch(cartActions.deleteProductFromCart(itemData.item.productID))}
-        onReduce={() => dispatch(cartActions.reduceProductInCart(itemData.item.productID))}
-        onAdd={() => dispatch(cartActions.increaseProductInCart(itemData.item.productID))}
+        onDelete={() =>
+          dispatch(cartActions.deleteProductFromCart(itemData.item.productID))
+        }
+        onReduce={() =>
+          dispatch(cartActions.reduceProductInCart(itemData.item.productID))
+        }
+        onAdd={() =>
+          dispatch(cartActions.increaseProductInCart(itemData.item.productID))
+        }
       />
     );
   };
@@ -44,14 +51,36 @@ const CartScreen = () => {
       <View style={styles.totalSumView}>
         <Text style={styles.totalSumTitle}>
           Total:{' '}
-          <Text style={styles.totalSumDigit}>{Math.abs(cartTotalPrice).toFixed(2)}$</Text>
+          <Text style={styles.totalSumDigit}>
+            {Math.abs(cartTotalPrice).toFixed(2)}$
+          </Text>
         </Text>
-        <Button
-          color="green"
-          title="order now"
-          disabled={cartProducts.length === 0 ? true : false}
-          onPress={() => console.log('Ordered now')}
-        />
+        <View style={{ flexDirection: 'row' }}>
+          <View style={{ marginRight: 7 }}>
+            <Button
+              title="x"
+              color="black"
+              disabled={cartProducts.length === 0 ? true : false}
+              onPress={() => {
+                dispatch(cartActions.clearCart());
+              }}
+            />
+          </View>
+          <Button
+            color="green"
+            title="order now"
+            disabled={cartProducts.length === 0 ? true : false}
+            onPress={() => {
+              Alert.alert(
+                'Congratulations!',
+                'Your order is saved!',
+                [{ text: 'Okey', style: 'default' }],
+                { cancelable: false }
+              );
+              dispatch(orderActions.addOrder(cartProducts, cartTotalPrice));
+            }}
+          />
+        </View>
       </View>
       <Text style={styles.cartTextHeader}>
         Cart items ({cartProducts.length})
@@ -97,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 16,
     textTransform: 'uppercase',
-  }
+  },
 });
 
 export default CartScreen;

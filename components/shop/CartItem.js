@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  Button,
   Platform,
   TouchableOpacity,
   StyleSheet,
@@ -17,22 +16,18 @@ const CartItem = (props) => {
           {props.title}
         </Text>
       </View>
-      <View style={styles.itemPriceView}>
-        <Text style={styles.itemText}>${props.price.toFixed(2)}</Text>
-      </View>
       <View style={styles.itemQuantityView}>
-        <Button title="-" color="red" onPress={props.onReduce} />
         <Text style={styles.itemText}>{props.quantity}</Text>
-        <Button title="+" color="green" onPress={props.onAdd} />
+      </View>
+      <View style={styles.itemPriceView}>
+        <Text style={styles.itemText}>{props.price.toFixed(2)}</Text>
       </View>
       <View style={styles.itemsDeleteButtonView}>
         <TouchableOpacity activeOpacity={0.7} onPress={props.onDelete}>
           <Ionicons
-            size={24}
+            size={26}
             color="red"
-            name={
-              Platform.OS === 'android' ? 'md-close-circle' : 'ios-close-circle'
-            }
+            name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
           />
         </TouchableOpacity>
       </View>
@@ -45,32 +40,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 17,
+    marginBottom: 15,
+    paddingHorizontal: 7,
   },
   itemTitleView: {
-    flex: 3,
+    flex: 4,
+  },
+  itemQuantityView: {
+    flex: 1,
+    alignItems: 'center',
     marginRight: 5,
   },
   itemPriceView: {
     flex: 2,
-    paddingLeft: 5,
+    marginRight: 5,
     alignItems: 'flex-start',
   },
-  itemQuantityView: {
-    flex: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
   itemsDeleteButtonView: {
-    width: 40,
-    height: 40,
+    backgroundColor: 'black',
+    width: 45,
+    height: 45,
+    borderRadius: 23,
     alignItems: 'center',
     justifyContent: 'center',
   },
   itemText: {
     color: '#777',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });

@@ -5,12 +5,12 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
-  Platform,
   Button,
 } from 'react-native';
 
 // Redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as cartActions from '../store/actions/cart';
 
 const CategoryProductsScreen = ({ route, navigation }) => {
   // An array of Product data for the current user-selected Category
@@ -21,6 +21,8 @@ const CategoryProductsScreen = ({ route, navigation }) => {
       }
     })
   );
+
+  const dispatch = useDispatch();
 
   const renderItem = (itemData) => {
     return (
@@ -43,27 +45,13 @@ const CategoryProductsScreen = ({ route, navigation }) => {
             </Text>
           </View>
           <View style={styles.itemButtonsView}>
-            <View style={{ width: '35%' }}>
-              <Button
-                title="-"
-                color="red"
-                onPress={() => {
-                  console.log('-1');
-                }}
-              />
-            </View>
-            <View style={styles.itemButtonsTextView}>
-              <Text style={styles.itemButtonsText}>0</Text>
-            </View>
-            <View style={{ width: '35%' }}>
-              <Button
-                title="+"
-                color="green"
-                onPress={() => {
-                  console.log('+1');
-                }}
-              />
-            </View>
+            <Button
+              color="green"
+              title="to cart"
+              onPress={() => {
+                dispatch(cartActions.addToCart(itemData.item));
+              }}
+            />
           </View>
         </View>
       </TouchableOpacity>
@@ -96,7 +84,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.7,
   },
   itemTextView: {
-    width: '65%',
+    width: '60%',
     flexDirection: 'column',
     marginVertical: 15,
     paddingLeft: 13,
@@ -111,11 +99,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   itemButtonsView: {
-    width: '35%',
+    width: '40%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingRight: 7,
+    justifyContent: 'flex-end',
+    paddingRight: 13,
   },
   itemButtonsTextView: {
     marginHorizontal: 8,

@@ -5,6 +5,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import goodsReducer from './store/reducers/goods';
 import cartReducer from './store/reducers/cart';
+import ordersReducer from './store/reducers/orders';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +14,7 @@ import TabNavigation from './navigation/TabNavigation';
 const rootReducer = combineReducers({
   goods: goodsReducer,
   cart: cartReducer,
+  orders: ordersReducer,
 });
 const store = createStore(rootReducer);
 

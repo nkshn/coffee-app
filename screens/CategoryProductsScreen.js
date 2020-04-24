@@ -45,13 +45,13 @@ const CategoryProductsScreen = ({ route, navigation }) => {
             </Text>
           </View>
           <View style={styles.itemButtonsView}>
-            <Button
-              color="green"
-              title="to cart"
-              onPress={() => {
-                dispatch(cartActions.addToCart(itemData.item));
-              }}
-            />
+            <View style={{ width: '65%' }}>
+              <Button
+                color="green"
+                title="to cart"
+                onPress={() => dispatch(cartActions.addProductToCart(itemData.item))}
+              />
+            </View>
           </View>
         </View>
       </TouchableOpacity>

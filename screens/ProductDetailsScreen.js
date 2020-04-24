@@ -30,7 +30,7 @@ const ProductDetailsScreen = ({ route }) => {
           color="green"
           title="You liked it? Add to cart"
           onPress={() => {
-            dispatch(cartActions.addToCart(selectedProduct));
+            dispatch(cartActions.addProductToCart(selectedProduct));
           }}
         />
       </View>

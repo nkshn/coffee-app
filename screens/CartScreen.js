@@ -30,9 +30,9 @@ const CartScreen = () => {
         title={itemData.item.productTitle}
         quantity={itemData.item.quantity}
         price={itemData.item.productPrice}
-        onDelete={() => {
-          dispatch(cartActions.deleteFromCart(itemData.item.productID));
-        }}
+        onDelete={() => dispatch(cartActions.deleteProductFromCart(itemData.item.productID))}
+        onReduce={() => dispatch(cartActions.reduceProductInCart(itemData.item.productID))}
+        onAdd={() => dispatch(cartActions.increaseProductInCart(itemData.item.productID))}
       />
     );
   };
@@ -44,7 +44,7 @@ const CartScreen = () => {
       <View style={styles.totalSumView}>
         <Text style={styles.totalSumTitle}>
           Total:{' '}
-          <Text style={styles.totalSumDigit}>{cartTotalPrice.toFixed(2)}$</Text>
+          <Text style={styles.totalSumDigit}>{Math.abs(cartTotalPrice).toFixed(2)}$</Text>
         </Text>
         <Button
           color="green"
@@ -53,14 +53,7 @@ const CartScreen = () => {
           onPress={() => console.log('Ordered now')}
         />
       </View>
-      <Text
-        style={{
-          fontWeight: 'bold',
-          fontSize: 20,
-          marginBottom: 16,
-          textTransform: 'uppercase',
-        }}
-      >
+      <Text style={styles.cartTextHeader}>
         Cart items ({cartProducts.length})
       </Text>
       <FlatList
@@ -99,6 +92,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  cartTextHeader: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 16,
+    textTransform: 'uppercase',
+  }
 });
 
 export default CartScreen;

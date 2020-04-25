@@ -1,19 +1,41 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+
+// Redux
+import { useSelector } from 'react-redux';
+
+import OrderItem from '../components/shop/OrderItem';
 
 const OrdersHistoryScreen = () => {
+  const ordersData = useSelector((state) => state.orders.orders);
+
+  const renderItem = (itemData) => {
+    return (
+      <OrderItem
+        cartProducts={itemData.item.items}
+        totalSum={itemData.item.totalSum.toFixed(2)}
+        orderDate={itemData.item.readebleDate}
+      />
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Orders History!</Text>
+    <View style={styles.screen}>
+      <View style={{}}>
+        <FlatList
+          data={ordersData}
+          keyExtractor={(item) => item.ID}
+          renderItem={renderItem}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    margin: 15,
   },
 });
 

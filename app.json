@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "coffee-app_OldCart",
-    "slug": "coffee-app_oldcart",
+    "name": "coffee-app_NewCart",
+    "slug": "coffee-app_newcart",
     "platforms": [
       "ios",
       "android",

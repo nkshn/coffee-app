@@ -9,12 +9,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStackNavigation from './HomeStackNavigation';
 import CartStackNavigation from './CartStackNavigation';
 import OrdersStackNavigation from './OrdersStackNavigation';
+import UserStackNavigation from './UserStackNavigation';
 
 // Redux
 import { useSelector } from 'react-redux';
-
-// Screens
-import ProfileScreen from '../screens/ProfileScreen';
 
 // Components
 import TabBarBadge from '../components/UI/TabBarBadge';
@@ -73,7 +71,7 @@ const TabNavigation = () => {
       <Tab.Screen name="Home" component={HomeStackNavigation} />
       <Tab.Screen name="Cart" component={CartStackNavigation} />
       <Tab.Screen name="Orders" component={OrdersStackNavigation} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Profile" component={UserStackNavigation} />
     </Tab.Navigator>
   );
 };

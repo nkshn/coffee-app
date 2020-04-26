@@ -8,6 +8,7 @@ import * as orderActions from '../store/actions/orders';
 
 // Components
 import CartItem from '../components/shop/CartItem';
+import CartNoItems from '../components/shop/CartNoItems';
 
 const CartScreen = () => {
   const cartTotalPrice = useSelector((state) => state.cart.totalSum);
@@ -48,46 +49,52 @@ const CartScreen = () => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.totalSumView}>
-        <Text style={styles.totalSumTitle}>
-          Total:{' '}
-          <Text style={styles.totalSumDigit}>
-            {Math.abs(cartTotalPrice).toFixed(2)}$
-          </Text>
-        </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <View style={{ marginRight: 7 }}>
-            <Button
-              title="x"
-              color="black"
-              disabled={cartProducts.length === 0 ? true : false}
-              onPress={() => {
-                dispatch(cartActions.clearCart());
-              }}
-            />
+      {cartProducts.length === 0 ? (
+        <CartNoItems />
+      ) : (
+        <View>
+          <View style={styles.totalSumView}>
+            <Text style={styles.totalSumTitle}>
+              Total:{' '}
+              <Text style={styles.totalSumDigit}>
+                {Math.abs(cartTotalPrice).toFixed(2)}$
+              </Text>
+            </Text>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ marginRight: 7 }}>
+                <Button
+                  title="x"
+                  color="black"
+                  disabled={cartProducts.length === 0 ? true : false}
+                  onPress={() => {
+                    dispatch(cartActions.clearCart());
+                  }}
+                />
+              </View>
+              <Button
+                color="green"
+                title="order now"
+                disabled={cartProducts.length === 0 ? true : false}
+                onPress={() => {
+                  Alert.alert('Congratulations!', 'Your order is saved!', [
+                    { text: 'Okey', style: 'default' },
+                  ]);
+                  dispatch(orderActions.addOrder(cartProducts, cartTotalPrice));
+                }}
+              />
+            </View>
           </View>
-          <Button
-            color="green"
-            title="order now"
-            disabled={cartProducts.length === 0 ? true : false}
-            onPress={() => {
-              Alert.alert('Congratulations!', 'Your order is saved!', [
-                { text: 'Okey', style: 'default' },
-              ]);
-              dispatch(orderActions.addOrder(cartProducts, cartTotalPrice));
-            }}
+          <Text style={styles.cartTextHeader}>
+            Cart items ({cartProducts.length})
+          </Text>
+          <FlatList
+            data={cartProducts}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.productID}
+            showsVerticalScrollIndicator={false}
           />
         </View>
-      </View>
-      <Text style={styles.cartTextHeader}>
-        Cart items ({cartProducts.length})
-      </Text>
-      <FlatList
-        data={cartProducts}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.productID}
-        showsVerticalScrollIndicator={false}
-      />
+      )}
     </View>
   );
 };

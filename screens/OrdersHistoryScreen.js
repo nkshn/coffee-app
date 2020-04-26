@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
 // Redux
 import { useSelector } from 'react-redux';
 
+// Components
 import OrderItem from '../components/shop/OrderItem';
+import NoOrders from '../components/shop/NoOrders';
 
 const OrdersHistoryScreen = () => {
   const ordersData = useSelector((state) => state.orders.orders);
@@ -21,14 +23,18 @@ const OrdersHistoryScreen = () => {
 
   return (
     <View style={styles.screen}>
-      <View style={{}}>
-        <FlatList
-          data={ordersData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.ID}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      {ordersData.length === 0 ? (
+        <NoOrders />
+      ) : (
+        <View>
+          <FlatList
+            data={ordersData}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.ID}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      )}
     </View>
   );
 };

@@ -23,9 +23,9 @@ const ProductDetailsScreen = ({ route }) => {
       <Text>{selectedProduct.name}</Text>
       <Text>{selectedProduct.description}</Text>
       <Text>{selectedProduct.price.toFixed(2)}$</Text>
-      <Text>{selectedProduct.counterLeft}</Text>
-      <Text>{selectedProduct.counterBuy}</Text>
-      <View style={{ width: '55%' }}>
+      {/* <Text>{selectedProduct.counterLeft}</Text> */}
+      {/* <Text>{selectedProduct.counterBuy}</Text> */}
+      <View style={{ width: '65%' }}>
         <Button
           color="green"
           title="You liked it? Add to cart"

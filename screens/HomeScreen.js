@@ -14,11 +14,11 @@ import { useSelector } from 'react-redux';
 import { CATEGORIES } from '../data/dummy-data';
 
 const HomeScreen = ({ navigation }) => {
-  const goodsData = useSelector(state => state.goods.avaliableGoods);
+  const goodsData = useSelector((state) => state.goods.avaliableGoods);
 
   const renderItem = (itemData) => {
     // How much every category have products
-    let counterOfCategoryItems = goodsData.filter(item => {
+    let counterOfCategoryItems = goodsData.filter((item) => {
       if (item.categoryID === itemData.item.ID) {
         return true;
       }
@@ -36,7 +36,9 @@ const HomeScreen = ({ navigation }) => {
       >
         <View style={styles.itemView}>
           <Text style={styles.itemTitle}>{itemData.item.name}</Text>
-          <Text style={styles.itemsCounter}>{counterOfCategoryItems.length} items</Text>
+          <Text style={styles.itemsCounter}>
+            {counterOfCategoryItems.length} items
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
   itemView: {
     width: '100%',
     height: 100,
-    backgroundColor: 'red',
+    backgroundColor: '#667d47',
     marginBottom: 30,
     borderRadius: 13,
     alignItems: 'center',
@@ -77,8 +79,8 @@ const styles = StyleSheet.create({
   itemsCounter: {
     fontSize: 16,
     fontWeight: '500',
-    color: 'white'
-  }
+    color: 'white',
+  },
 });
 
 export default HomeScreen;

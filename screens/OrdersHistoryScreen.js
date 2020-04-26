@@ -24,8 +24,9 @@ const OrdersHistoryScreen = () => {
       <View style={{}}>
         <FlatList
           data={ordersData}
-          keyExtractor={(item) => item.ID}
           renderItem={renderItem}
+          keyExtractor={(item) => item.ID}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     </View>

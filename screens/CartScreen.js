@@ -71,12 +71,9 @@ const CartScreen = () => {
             title="order now"
             disabled={cartProducts.length === 0 ? true : false}
             onPress={() => {
-              Alert.alert(
-                'Congratulations!',
-                'Your order is saved!',
-                [{ text: 'Okey', style: 'default' }],
-                { cancelable: false }
-              );
+              Alert.alert('Congratulations!', 'Your order is saved!', [
+                { text: 'Okey', style: 'default' },
+              ]);
               dispatch(orderActions.addOrder(cartProducts, cartTotalPrice));
             }}
           />

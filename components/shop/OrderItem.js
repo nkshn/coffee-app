@@ -44,10 +44,7 @@ const OrderItem = (props) => {
       <View style={styles.showDetailsContainer}>
         <TouchableOpacity
           activeOpacity={0.5}
-          onPress={() => {
-            setShowDetailsButton((prevState) => !prevState);
-            console.log(showDetailsButton);
-          }}
+          onPress={() => setShowDetailsButton((prevState) => !prevState)}
         >
           <View style={styles.showDetailsView}>
             <Ionicons

@@ -21,9 +21,13 @@ const CartItem = (props) => {
         <Text style={styles.itemText}>${props.price.toFixed(2)}</Text>
       </View>
       <View style={styles.itemQuantityView}>
-        <View style={{ width: '30%' }}><Button title="-" color="red" onPress={props.onReduce} /></View>
+        <View style={{ width: '30%' }}>
+          <Button title="-" color="red" onPress={props.onReduce} />
+        </View>
         <Text style={styles.itemText}>{props.quantity}</Text>
-        <View style={{ width: '30%' }}><Button title="+" color="green" onPress={props.onAdd} /></View>
+        <View style={{ width: '30%' }}>
+          <Button title="+" color="green" onPress={props.onAdd} />
+        </View>
       </View>
       <View style={styles.itemsDeleteButtonView}>
         <TouchableOpacity activeOpacity={0.7} onPress={props.onDelete}>

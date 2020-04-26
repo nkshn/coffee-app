@@ -21,10 +21,22 @@ const CategoryProductsScreen = ({ route, navigation }) => {
       }
     })
   );
+  /*
+   * Converting Cart Products Object to an Array only with Keys (id's). Example: ['g1', 'g3', 'g22']
+   * And then checking for already existing products in the cart
+   */
+  const cartProducts = Object.keys(useSelector((state) => state.cart.products));
 
   const dispatch = useDispatch();
 
   const renderItem = (itemData) => {
+    let isProductsInTheCart = false;
+    if (cartProducts.includes(itemData.item.ID) == true) {
+      isProductsInTheCart = true;
+    } else {
+      isProductsInTheCart = false;
+    }
+
     return (
       <TouchableOpacity
         activeOpacity={0.7}
@@ -48,8 +60,11 @@ const CategoryProductsScreen = ({ route, navigation }) => {
             <View style={{ width: '65%' }}>
               <Button
                 color="green"
-                title="to cart"
-                onPress={() => dispatch(cartActions.addProductToCart(itemData.item))}
+                title={isProductsInTheCart == true ? 'Added' : 'To Cart'}
+                disabled={isProductsInTheCart}
+                onPress={() =>
+                  dispatch(cartActions.addProductToCart(itemData.item))
+                }
               />
             </View>
           </View>

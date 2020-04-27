@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 
 // Navigation
 import { createStackNavigator } from '@react-navigation/stack';
@@ -29,7 +30,8 @@ const HomeStackNavigation = () => {
         options={({ route }) => ({
           title: route.params.productName,
           headerTitleStyle: {
-            width: 265,
+            width: 240,
+            // width: Platform.OS === 'android' ? 140 : null, // 240
           },
         })}
       />

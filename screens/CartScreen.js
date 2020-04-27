@@ -10,6 +10,10 @@ import * as orderActions from '../store/actions/orders';
 import CartItem from '../components/shop/CartItem';
 import CartNoItems from '../components/shop/CartNoItems';
 
+// UI Elements
+import SimpleButton from '../components/UI/SimpleButton';
+import IconButton from '../components/UI/IconButton';
+
 const CartScreen = () => {
   const cartTotalPrice = useSelector((state) => state.cart.totalSum);
   const cartProducts = useSelector((state) => {
@@ -61,21 +65,23 @@ const CartScreen = () => {
               </Text>
             </Text>
             <View style={{ flexDirection: 'row' }}>
-              <View style={{ marginRight: 7 }}>
-                <Button
-                  title="x"
-                  color="black"
-                  disabled={cartProducts.length === 0 ? true : false}
-                  onPress={() => {
-                    dispatch(cartActions.clearCart());
-                  }}
+              <View style={{ marginRight: 10 }}>
+                <IconButton
+                  iconColor="#000"
+                  mainColor="#000"
+                  iconSize={20}
+                  iconName="md-close" // PLatfoRM SYKA!!!1
+                  bodyStyles={{ borderColor: '#000', borderWidth: 0.7 }}
+                  disabledVariable={cartProducts.length === 0 ? true : false}
+                  onClick={() => dispatch(cartActions.clearCart())}
                 />
               </View>
-              <Button
-                color="#667d47"
-                title="order now"
-                disabled={cartProducts.length === 0 ? true : false}
-                onPress={() => {
+              <SimpleButton
+                textColor="#fff"
+                mainColor="#667d47"
+                title="Order Now"
+                disabledVariable={cartProducts.length === 0 ? true : false}
+                onClick={() => {
                   Alert.alert('Congratulations!', 'Your order is saved!', [
                     { text: 'Okey', style: 'default' },
                   ]);
@@ -107,11 +113,12 @@ const styles = StyleSheet.create({
   },
   totalSumView: {
     width: '100%',
+    elevation: 4,
     marginBottom: 25,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 13,
-    backgroundColor: 'gray',
+    backgroundColor: '#ababab',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

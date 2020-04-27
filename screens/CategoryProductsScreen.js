@@ -5,12 +5,14 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
-  Button,
 } from 'react-native';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import * as cartActions from '../store/actions/cart';
+
+// UI Elements
+import SimpleButton from '../components/UI/SimpleButton';
 
 const CategoryProductsScreen = ({ route, navigation }) => {
   // An array of Product data for the current user-selected Category
@@ -57,12 +59,13 @@ const CategoryProductsScreen = ({ route, navigation }) => {
             </Text>
           </View>
           <View style={styles.itemButtonsView}>
-            <View style={{ width: '65%' }}>
-              <Button
-                color="#667d47"
+            <View style={{ width: '65%', zIndex: 20 }}>
+              <SimpleButton
+                textColor="#fff"
+                mainColor="#667d47"
                 title={isProductsInTheCart == true ? 'Added' : 'To Cart'}
-                disabled={isProductsInTheCart}
-                onPress={() =>
+                disabledVariable={isProductsInTheCart}
+                onClick={() =>
                   dispatch(cartActions.addProductToCart(itemData.item))
                 }
               />

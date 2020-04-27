@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     right: -8,
     top: -2,
     zIndex: 10,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
+    backgroundColor: '#f44336',
     borderWidth: 0.7,
     borderRadius: 8,
     borderColor: '#f44336',
@@ -41,7 +42,8 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 10,
-    color: 'black',
+    // color: 'black',
+    color: 'white',
     fontWeight: 'bold',
   },
 });

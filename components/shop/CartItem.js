@@ -9,6 +9,9 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+// UI Elements
+import IconButton from '../UI/IconButton';
+
 const CartItem = (props) => {
   return (
     <View style={styles.itemView}>
@@ -21,13 +24,35 @@ const CartItem = (props) => {
         <Text style={styles.itemText}>${props.price.toFixed(2)}</Text>
       </View>
       <View style={styles.itemQuantityView}>
-        <View style={{ width: '30%' }}>
-          <Button title="-" color="#f44336" onPress={props.onReduce} />
-        </View>
-        <Text style={styles.itemText}>{props.quantity}</Text>
-        <View style={{ width: '30%' }}>
-          <Button title="+" color="#667d47" onPress={props.onAdd} />
-        </View>
+        <IconButton
+          iconColor="#fff"
+          mainColor="#000"
+          iconSize={14}
+          iconName={Platform.OS === 'android' ? 'md-remove' : 'ios-remove'}
+          bodyStyles={{
+            height: 30,
+            borderRadius: 4,
+            backgroundColor: '#f44336',
+          }}
+          disabledVariable={false}
+          onClick={props.onReduce}
+        />
+        <Text style={[styles.itemText, { marginHorizontal: 2 }]}>
+          {props.quantity}
+        </Text>
+        <IconButton
+          iconColor="#fff"
+          mainColor="#000"
+          iconSize={14}
+          iconName={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
+          bodyStyles={{
+            height: 30,
+            borderRadius: 4,
+            backgroundColor: '#667d47',
+          }}
+          disabledVariable={false}
+          onClick={props.onAdd}
+        />
       </View>
       <View style={styles.itemsDeleteButtonView}>
         <TouchableOpacity activeOpacity={0.7} onPress={props.onDelete}>

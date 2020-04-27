@@ -56,7 +56,7 @@ const OrderItem = (props) => {
                     : 'ios-arrow-dropdown-circle'
                   : Platform.OS === 'android'
                   ? 'md-arrow-dropup-circle'
-                  : 'ios-arrow-dropu-circle'
+                  : 'ios-arrow-dropup-circle'
               }
               color="black"
             />

@@ -52,7 +52,7 @@ const CartScreen = () => {
       {cartProducts.length === 0 ? (
         <CartNoItems />
       ) : (
-        <View>
+        <View style={{ flex: 1 }}>
           <View style={styles.totalSumView}>
             <Text style={styles.totalSumTitle}>
               Total:{' '}
@@ -72,7 +72,7 @@ const CartScreen = () => {
                 />
               </View>
               <Button
-                color="green"
+                color="#667d47"
                 title="order now"
                 disabled={cartProducts.length === 0 ? true : false}
                 onPress={() => {
@@ -87,12 +87,13 @@ const CartScreen = () => {
           <Text style={styles.cartTextHeader}>
             Cart items ({cartProducts.length})
           </Text>
-          <FlatList
-            data={cartProducts}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.productID}
-            showsVerticalScrollIndicator={false}
-          />
+          <View style={{ flex: 1 }}>
+            <FlatList
+              data={cartProducts}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.productID}
+            />
+          </View>
         </View>
       )}
     </View>

@@ -27,7 +27,7 @@ const ProductDetailsScreen = ({ route }) => {
       {/* <Text>{selectedProduct.counterBuy}</Text> */}
       {/* <View style={{ width: '65%' }}>
         <Button
-          color="green"
+          color="#667d47"
           title="You liked it? Add to cart"
           onPress={() => {
             dispatch(cartActions.addProductToCart(selectedProduct));

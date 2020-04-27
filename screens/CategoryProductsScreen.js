@@ -59,7 +59,7 @@ const CategoryProductsScreen = ({ route, navigation }) => {
           <View style={styles.itemButtonsView}>
             <View style={{ width: '65%' }}>
               <Button
-                color="green"
+                color="#667d47"
                 title={isProductsInTheCart == true ? 'Added' : 'To Cart'}
                 disabled={isProductsInTheCart}
                 onPress={() =>

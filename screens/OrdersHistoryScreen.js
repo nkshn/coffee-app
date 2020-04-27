@@ -31,7 +31,6 @@ const OrdersHistoryScreen = () => {
             data={ordersData}
             renderItem={renderItem}
             keyExtractor={(item) => item.ID}
-            showsVerticalScrollIndicator={false}
           />
         </View>
       )}

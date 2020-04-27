@@ -26,7 +26,12 @@ const HomeStackNavigation = () => {
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScreen}
-        options={({ route }) => ({ title: route.params.productName })}
+        options={({ route }) => ({
+          title: route.params.productName,
+          headerTitleStyle: {
+            width: 265,
+          },
+        })}
       />
     </Stack.Navigator>
   );

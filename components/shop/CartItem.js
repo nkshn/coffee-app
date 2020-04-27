@@ -22,18 +22,18 @@ const CartItem = (props) => {
       </View>
       <View style={styles.itemQuantityView}>
         <View style={{ width: '30%' }}>
-          <Button title="-" color="red" onPress={props.onReduce} />
+          <Button title="-" color="#f44336" onPress={props.onReduce} />
         </View>
         <Text style={styles.itemText}>{props.quantity}</Text>
         <View style={{ width: '30%' }}>
-          <Button title="+" color="green" onPress={props.onAdd} />
+          <Button title="+" color="#667d47" onPress={props.onAdd} />
         </View>
       </View>
       <View style={styles.itemsDeleteButtonView}>
         <TouchableOpacity activeOpacity={0.7} onPress={props.onDelete}>
           <Ionicons
             size={24}
-            color="red"
+            color="#f44336"
             name={
               Platform.OS === 'android' ? 'md-close-circle' : 'ios-close-circle'
             }
